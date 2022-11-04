@@ -1,0 +1,49 @@
+<SettingsListRow>
+{#if isSingleInstance}
+<button
+   id="settings-list-button-login"
+   on:click="onClickLogin(event)"
+   rel="prefetch"
+   aria-label={intl.logInToAnInstanceText}
+   class="settings-list-button focus-fix"
+>
+  <span>{intl.logInToAnInstanceText}</span>
+</button>
+{:else}
+  <SettingsListButton href="/settings/instances" label="{intl.instances}"/>
+{/if}
+</SettingsListRow>
+<style>
+  .settings-list-button {
+    display: flex;
+    flex-grow: 1;
+  }
+  .settings-list-button span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+</style>
+<script>
+  import SettingsListRow from './SettingsListRow.html'
+  import SettingsListButton from './SettingsListButton.html'
+  import { logInToDefaultInstance } from '../../_actions/addInstance'
+  export default {
+    components: {
+      SettingsListRow,
+      SettingsListButton
+    },
+    data: () => ({
+      isSingleInstance: process.env.IS_SINGLE_INSTANCE,
+      icon: undefined,
+      ariaLabel: undefined
+    }),
+    methods: {
+      onClickLogin (event) {
+        event.preventDefault()
+        event.stopPropagation()
+        logInToDefaultInstance()
+      }
+    }
+  }
+</script>

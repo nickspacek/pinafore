@@ -5,9 +5,7 @@
     <SettingsListRow>
       <SettingsListButton href="/settings/general" label="{intl.general}"/>
     </SettingsListRow>
-    <SettingsListRow>
-      <SettingsListButton href="/settings/instances" label="{intl.instances}"/>
-    </SettingsListRow>
+    <InstanceSettingsListRow />
     <SettingsListRow>
       <SettingsListButton href="/settings/wellness" label="{intl.wellness}"/>
     </SettingsListRow>
@@ -27,12 +25,14 @@
   import SettingsLayout from '../../_components/settings/SettingsLayout.html'
   import SettingsList from '../../_components/settings/SettingsList.html'
   import SettingsListRow from '../../_components/settings/SettingsListRow.html'
+  import InstanceSettingsListRow from '../../_components/settings/InstanceSettingsListRow.html'
   import SettingsListButton from '../../_components/settings/SettingsListButton.html'
 
   export default {
     components: {
       SettingsLayout,
       SettingsList,
+      InstanceSettingsListRow,
       SettingsListRow,
       SettingsListButton
     },

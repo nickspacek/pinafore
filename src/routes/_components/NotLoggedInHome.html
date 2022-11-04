@@ -8,7 +8,7 @@
       <div>
         {@html intl.homeDescription}
         <p style="text-align: right;">
-          <a class="button primary" rel="prefetch" href="/settings/instances/add">{intl.logIn}</a>
+          <LoginButton />
         </p>
       </div>
   </FreeTextLayout>
@@ -50,12 +50,14 @@
 <script>
   import FreeTextLayout from './FreeTextLayout.html'
   import HiddenFromSSR from './HiddenFromSSR.html'
+  import LoginButton from './LoginButton.html'
   import SvgIcon from './SvgIcon.html'
 
   export default {
     components: {
       FreeTextLayout,
       HiddenFromSSR,
+      LoginButton,
       SvgIcon
     }
   }

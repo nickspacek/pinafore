@@ -1,0 +1,20 @@
+{#if isSingleInstance}
+<button class="button primary" rel="prefetch" on:click="onClickLogin(event)">{intl.logIn}</button>
+{:else}
+<a class="button primary" rel="prefetch" href="/settings/instances/add">{intl.logIn}</a>
+{/if}
+<script>
+  import { logInToDefaultInstance } from '../_actions/addInstance'
+  export default {
+    data: () => ({
+      isSingleInstance: process.env.IS_SINGLE_INSTANCE
+    }),
+    methods: {
+      onClickLogin (event) {
+        event.preventDefault()
+        event.stopPropagation()
+        logInToDefaultInstance()
+      }
+    }
+  }
+</script>

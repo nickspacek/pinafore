@@ -64,6 +64,14 @@ async function redirectToOauth () {
   }, 200)
 }
 
+export async function logInToDefaultInstance () {
+  console.log('Attempting default login')
+  store.set({
+    instanceNameInSearch: process.env.SINGLE_INSTANCE_URL
+  })
+  return logInToInstance()
+}
+
 export async function logInToInstance () {
   store.set({
     logInToInstanceLoading: true,
