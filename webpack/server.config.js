@@ -3,7 +3,7 @@ import path from 'path'
 import webpack from 'webpack'
 import config from 'sapper/config/webpack.js'
 import pkg from '../package.json'
-import { mode, dev, resolve, inlineSvgs } from './shared.config.js'
+import { mode, dev, resolve, inlineSvgs, isSingleInstance, singleInstanceUrl } from './shared.config.js'
 
 const { version } = pkg
 
@@ -68,7 +68,9 @@ export default {
       'process.env.INLINE_SVGS': JSON.stringify(inlineSvgs),
       'process.env.LOCALE': JSON.stringify(LOCALE),
       'process.env.PINAFORE_VERSION': JSON.stringify(version),
-      'process.env.IS_SERVICE_WORKER': 'false'
+      'process.env.IS_SERVICE_WORKER': 'false',
+      'process.env.IS_SINGLE_INSTANCE': JSON.stringify(isSingleInstance),
+      'process.env.SINGLE_INSTANCE_URL': JSON.stringify(singleInstanceUrl)
     })
   ]
 }

@@ -16,6 +16,8 @@ Promise.all([idbReady(), loadPolyfills()]).then(() => {
 })
 
 console.log('process.env.NODE_ENV', process.env.NODE_ENV)
+console.log('process.env.IS_SINGLE_INSTANCE', process.env.IS_SINGLE_INSTANCE)
+console.log('process.env.SINGLE_INSTANCE_URL', process.env.SINGLE_INSTANCE_URL)
 
 if (import.meta.webpackHot) {
   import.meta.webpackHot.accept()

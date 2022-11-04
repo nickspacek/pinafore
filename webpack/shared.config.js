@@ -3,6 +3,9 @@ import svgs from '../bin/svgs.js'
 const inlineSvgs = svgs.filter(_ => _.inline).map(_ => `#${_.id}`)
 const mode = process.env.NODE_ENV || 'production'
 const dev = mode === 'development'
+const isSingleInstance = process.env.IS_SINGLE_INSTANCE || false
+const singleInstanceUrl = process.env.SINGLE_INSTANCE_URL || ''
+// TODO look for best way to raise errors when single instance setup is incomplete
 
 const resolve = {
   extensions: ['.js', '.json', '.html'],
@@ -20,5 +23,7 @@ export {
   mode,
   dev,
   resolve,
-  inlineSvgs
+  inlineSvgs,
+  isSingleInstance,
+  singleInstanceUrl
 }

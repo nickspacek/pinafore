@@ -5,7 +5,7 @@ import config from 'sapper/config/webpack.js'
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 import terser from './terser.config.js'
 import CircularDependencyPlugin from 'circular-dependency-plugin'
-import { mode, dev, resolve, inlineSvgs } from './shared.config.js'
+import { mode, dev, resolve, inlineSvgs, isSingleInstance, singleInstanceUrl } from './shared.config.js'
 import { version } from '../package.json'
 
 import urlRegex from '../src/routes/_utils/urlRegexSource.js'
@@ -117,7 +117,9 @@ export default {
       'process.env.LOCALE': JSON.stringify(LOCALE),
       'process.env.EMOJI_PICKER_I18N': emojiPickerI18n ? JSON.stringify(emojiPickerI18n) : 'undefined',
       'process.env.PINAFORE_VERSION': JSON.stringify(version),
-      'process.env.IS_SERVICE_WORKER': 'false'
+      'process.env.IS_SERVICE_WORKER': 'false',
+      'process.env.IS_SINGLE_INSTANCE': JSON.stringify(isSingleInstance),
+      'process.env.SINGLE_INSTANCE_URL': JSON.stringify(singleInstanceUrl)
     }),
     new CircularDependencyPlugin({
       exclude: /node_modules/,
