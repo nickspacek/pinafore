@@ -1,0 +1,29 @@
+<button
+   on:click="fire('click', event)"
+   rel="prefetch"
+   aria-label={ariaLabel || label}
+   class="settings-list-button focus-fix {className ? className : ''}"
+>
+  <span>
+    {label}
+  </span>
+</button>
+<style>
+  .settings-list-button {
+    display: flex;
+    flex-grow: 1;
+  }
+  .settings-list-button span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+</style>
+<script>
+  export default {
+    data: () => ({
+      ariaLabel: undefined,
+      className: undefined
+    })
+  }
+</script>

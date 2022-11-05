@@ -33,8 +33,19 @@ export function switchToInstance (instanceName) {
   switchToTheme(instanceThemes[instanceName], enableGrayscale)
 }
 
-export async function logOutOfInstance (instanceName, message) {
+export async function isLoggedIn() {
+  const { loggedInInstances } = store.get()
+  return loggedInInstances.length > 0
+}
+
+export async function logOutOfDefaultInstance (message) {
+  const { currentInstance } = store.get()
+  return logOutOfInstance(currentInstance, message, '/')
+}
+
+export async function logOutOfInstance (instanceName, message, logoutLocation) {
   message = message || formatIntl('intl.loggedOutOfInstance', { instance: instanceName })
+  logoutLocation = logoutLocation || '/settings/instances'
   const {
     composeData,
     currentInstance,
@@ -84,7 +95,7 @@ export async function logOutOfInstance (instanceName, message) {
   const { enableGrayscale } = store.get()
   switchToTheme(instanceThemes[newInstance], enableGrayscale)
   /* no await */ database.clearDatabaseForInstance(instanceName)
-  goto('/settings/instances')
+  goto(logoutLocation)
 }
 
 function setStoreVerifyCredentials (instanceName, thisVerifyCredentials) {

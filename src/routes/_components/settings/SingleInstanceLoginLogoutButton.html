@@ -1,0 +1,34 @@
+{#if loggedIn}
+<SettingsListActionButton
+  on:click="onClickLogout(event)"
+  label="{intl.logOut}" />
+{:else}
+<SettingsListActionButton
+  on:click="onClickLogin(event)"
+  label="{intl.logIn}" />
+{/if}
+<script>
+  import SettingsListActionButton from './SettingsListActionButton.html'
+  import { logInToDefaultInstance } from '../../_actions/addInstance'
+  import { isLoggedIn, logOutOfDefaultInstance } from '../../_actions/instances'
+  export default {
+    components: {
+      SettingsListActionButton
+    },
+    data: () => ({
+      loggedIn: isLoggedIn()
+    }),
+    methods: {
+      onClickLogin (event) {
+        event.preventDefault()
+        event.stopPropagation()
+        logInToDefaultInstance()
+      },
+      onClickLogout (event) {
+        event.preventDefault()
+        event.stopPropagation()
+        logOutOfDefaultInstance()
+      }
+    }
+  }
+</script>
